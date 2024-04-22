@@ -33,12 +33,12 @@ void makeRegionArray(Region regionArray[], Row rowArray[]) {
 	}	
 	for (int i = 0; i < NUMOFREGIONS; i++) {	// insert year births for each region
 		for (int year = 0; year < 18; year++){
-			regionArray[i].periodArray[year].births = rowArray[i+(year*NUMOFREGIONS*2)].count;	
+			regionArray[i].periodArray[year].births = rowArray[i+(year*NUMOFREGIONS*2)].count; //  PARADEIGMA: 3η PERIOXH 4hs xronias einai i=2 kai year=3	
 		}
 	}
 	for (int i = 0; i < NUMOFREGIONS; i++) {	// insert year deaths for each region
 		for (int year = 0; year < 18; year++){
-			regionArray[i].periodArray[year].deaths = rowArray[(i+NUMOFREGIONS)+(year*NUMOFREGIONS*2)].count;	
+			regionArray[i].periodArray[year].deaths = rowArray[(i+NUMOFREGIONS)+(year*NUMOFREGIONS*2)].count;// to idio gia deaths 	
 		}
 	}
 }
