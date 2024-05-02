@@ -27,6 +27,7 @@ struct Period {
 struct Region {
 	string name;
 	Period periodArray[NUMOFYEARS];
+	int totalBirths;
 	Period period(int year) {	// Transitions year to array index. e.g. 2005 -> 0, 2006 -> 1 ...
 		int index;
 		if (year < 2005 || year > 2022) {
@@ -35,6 +36,11 @@ struct Region {
 			index = year - 2005; 
 		}
 		return periodArray[index];
+	}
+	void calculateTotalBirths() {
+		for (int i = 0; i < NUMOFYEARS; i++) {
+			totalBirths += periodArray[i].births;
+		}
 	}
 };
 

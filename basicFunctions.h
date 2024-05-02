@@ -11,5 +11,5 @@ void readFile(ifstream&, Row*);
 void printDataAtIndex(int, Row*);
 
 void makeRegionArray(Region*, Row*);
-
+void calcTotalBirths(Region*);
 #endif
