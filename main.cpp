@@ -2,6 +2,7 @@
 
 #include "init.h"
 #include "basicFunctions.h"
+#include "sortingFunctions.h"
 using namespace std;
 
 ifstream DataFile("Data(Edited).txt");
