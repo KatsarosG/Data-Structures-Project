@@ -1,7 +1,8 @@
 CC = g++
-
+# Για να γίνει ενα λειτουργικό main.out αρχειο πρεπει να υπάρχουν τα object files που περιέχουν τον εκτελέσιμο κωδικα των συναρτίσεων που καλεί η main. Για να γίνει αυτό με το g++ -c δημιουργούμε το καθε ενα object file (.o) και στο τελος τα κανουμε link.
 main:$(OBJ)
-	$(CC) -c basicFunctions.cpp
-	$(CC) -c main.cpp
-	$(CC) -o main.out basicFunctions.o main.o
+	$(CC) -c basicFunctions.cpp		# Make object file for basicFunctions.cpp
+	$(CC) -c main.cpp				# Make object file for main.cpp
+	$(CC) -c sortingFunctions.cpp	# Make object file for sortingFunctions.cpp
+	$(CC) -o main.out basicFunctions.o sortingFunctions.o main.o	# Link object files together to create main.out
 
