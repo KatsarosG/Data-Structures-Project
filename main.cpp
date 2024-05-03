@@ -1,3 +1,5 @@
+// Εδώ τεστάρουμε οτι δουλέβουν οι συναρτίσεις που εχουμε γράψει
+
 #include "init.h"
 #include "basicFunctions.h"
 using namespace std;
