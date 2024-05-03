@@ -1,3 +1,5 @@
+// Εδώ μπενουν τα Function Definitions, δηλαδή τα σώματα των συναρτίσεων που δηλώθηκαν στο basicFunctions.h
+
 #include "basicFunctions.h"
 #include "init.h"
 

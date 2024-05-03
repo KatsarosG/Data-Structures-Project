@@ -1,3 +1,5 @@
+// Εδω μπένουν οι βασικές δηλώσεις μεταβλήτων, σταθέρων, δομών κλπ.
+
 #pragma once
 #include <vector>
 #ifndef INIT_H
