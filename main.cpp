@@ -11,17 +11,27 @@ Region regionArray[NUMOFREGIONS];
 
 int main() {
 	readFile(DataFile, dataArray);
-	printDataAtIndex(647, dataArray);	// example of reading at line 647 (last line)
-	printDataAtIndex(0, dataArray);		// example of reading at line 0 (first line)
-	cout << "Data at index 1: " << dataArray[1].region << endl;	// example of accessing data at line 1
 	DataFile.close();
 	
 	makeRegionArray(regionArray, dataArray);
-	cout << "Region: " << regionArray[0].name << " Births: " << regionArray[0].periodArray[1].births << endl;	// example of 1st region, 2nd year, births
-	cout << "Region: " << regionArray[17].name << " Deaths: " << regionArray[17].periodArray[1].deaths << endl;	// example of 18th region, 2nd year, deaths
-
 	calcTotalBirths(regionArray);
-	cout << regionArray[1].name << ": " << regionArray[1].totalBirths << endl;
-	cout << regionArray[5].name << ": " << regionArray[5].totalBirths << endl;
+
+	for (int i = 0; i < NUMOFREGIONS; i++) {
+		cout << regionArray[i].name << ": " << regionArray[i].totalBirths << endl;
+	}
+	cout << "\n--------\n";
+
+	Region quickSortedArray[NUMOFREGIONS];	// Create new array
+	copy(begin(regionArray), end(regionArray), begin(quickSortedArray));
+
+	quickSort(quickSortedArray, 0, NUMOFREGIONS-1);
+
+	cout<<"-------------QuickSortedArray:--------------\n";
+	for (int i = 0; i < NUMOFREGIONS; i++) {
+		cout << quickSortedArray[i].name << ": " << quickSortedArray[i].totalBirths << endl;
+	}
+
+
+	
 }
 
