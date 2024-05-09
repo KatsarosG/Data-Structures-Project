@@ -4,6 +4,33 @@
 #include <algorithm>
 
 // Εδώ μπένουν τα σώματα των συναρτήσεων
+//QuickSort
+int splitArr(Region arr[], int low, int high) {
+    int pivot = arr[high].totalBirths;
+    int i = low - 1;
+
+    if (low <= high) {
+        for (int j = low; j < high; j++) {
+            if (arr[j].totalBirths <= pivot) {
+                i++;
+                swap(arr[i], arr[j]);
+            }
+        }
+        swap(arr[i + 1], arr[high]);
+    }
+    return (i + 1);
+}
+
+void quickSort(Region arr[], int low, int high) {
+    if (low < high) {
+        int pivoti = splitArr(arr, low, high);
+
+        quickSort(arr, low, pivoti - 1);
+        quickSort(arr, pivoti + 1, high);
+    }
+}
+
+//MergeSort
 void merge(Region arr[], int l, int m, int r) {
 	int leftArraySize = m - l + 1;
 	int rightArraySize = r - m;
@@ -44,4 +71,3 @@ void mergeSort(Region arr[], int l, int r) {
 		merge(arr, l, m, r);
 	}
 }
-
