@@ -42,3 +42,20 @@ void makeRegionArray(Region regionArray[], Row rowArray[]) {
 		}
 	}
 }
+<<<<<<< Updated upstream
+=======
+
+void calcTotalBirths(Region regionArray[]) {
+	for (int i = 0; i < NUMOFREGIONS; i++) {
+		regionArray[i].calculateTotalBirths();
+	}
+}
+
+void calcTotalDeaths(Region regionArray[]) {
+		for(int i = 0; i < NUMOFREGIONS; i++){
+        regionArray[i].calculateTotalDeaths();
+		}
+	}
+
+
+>>>>>>> Stashed changes
