@@ -24,6 +24,12 @@ void readFile(ifstream &file, Row RowStructArray[]) {
 	}
 }
 
+void printRegionArray(Region arr[]) {
+	for (int i = 0; i < NUMOFREGIONS; i++) {
+		cout << arr[i].name << ": " << arr[i].totalBirths << endl;
+	}
+}
+
 void printDataAtIndex(int n, Row RowStructArray[]) {
 	cout << "Data at Line: " << n << endl << "\t";
 	cout << RowStructArray[n].period << " " << RowStructArray[n].BirthDeath << " " << RowStructArray[n].region << " " << RowStructArray[n].count << endl;
