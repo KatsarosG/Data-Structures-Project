@@ -71,3 +71,43 @@ void mergeSort(Region arr[], int l, int r) {
 		merge(arr, l, m, r);
 	}
 }
+
+//Counting Sort
+void countingSort(Region arr[], int calculateTotalDeaths()) {
+	int output[10];
+  	int count[10];
+  	int max = arr[0];
+
+  // Find the largest element of the array
+  	for (int i = 1; i < size; i++) {
+    	if (arr[i] > max)
+    		max = arr[i];
+  	}
+
+  // Initialize count array with all zeros.
+  	for (int i = 0; i <= max; ++i) {
+		count[i] = 0;
+  	}
+
+  // Store the count of each element
+  	for (int i = 0; i < size; i++) {
+    	count[arr[i]]++;
+  	}
+
+  // Store the cummulative count of each array
+  	for (int i = 1; i <= max; i++) {
+    	count[i] += count[i - 1];
+  	}
+
+  // Find the index of each element of the original array in count array, and
+  // place the elements in output array
+  	for (int i = size - 1; i >= 0; i--) {
+    	output[count[arr[i]] - 1] = arr[i];
+    	count[arr[i]]--;
+  	}
+
+  // Copy the sorted elements into original array
+  	for (int i = 0; i < size; i++) {
+    	arr[i] = output[i];
+  	}
+}
