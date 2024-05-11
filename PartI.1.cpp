@@ -33,7 +33,7 @@ int main() {
 	clockStart = clock();
 	quickSort(quickSortedArray, 0, NUMOFREGIONS-1);
 	clockEnd = clock();
-	double quickSortDuration = double(clockEnd - clockStart);
+	int quickSortDuration = int(clockEnd - clockStart);
 
 	cout<<"\n-------------QuickSortedArray:--------------\n";
 	printRegionArray(quickSortedArray);  
@@ -43,7 +43,7 @@ int main() {
 	clockStart = clock();
 	mergeSort(mergeSortedArray, 0, NUMOFREGIONS-1);	// Merge sort mergeSortedArray
 	clockEnd = clock();
-	double mergeSortDuration = double(clockEnd - clockStart);
+	int mergeSortDuration = int(clockEnd - clockStart);
 	
   	cout<<"\n-------------MergeSortedArray:--------------\n";
 	printRegionArray(mergeSortedArray);
