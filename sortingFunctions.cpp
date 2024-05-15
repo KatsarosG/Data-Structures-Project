@@ -71,43 +71,39 @@ void mergeSort(Region arr[], int l, int r) {
 		merge(arr, l, m, r);
 	}
 }
+void heapify(Region regionArray[], int n, int i) {
+    int largest = i; // Initialize largest as root
+    int left = 2 * i + 1; // left = 2*i + 1
+    int right = 2 * i + 2; // right = 2*i + 2
 
-//Counting Sort
-void countingSort(Region arr[], int calculateTotalDeaths()) {
-	int output[10];
-  	int count[10];
-  	int max = arr[0];
+    // If left child is larger than root
+    if (left < n && regionArray[left].totalDeaths > regionArray[largest].totalDeaths)
+        largest = left;
 
-  // Find the largest element of the array
-  	for (int i = 1; i < size; i++) {
-    	if (arr[i] > max)
-    		max = arr[i];
-  	}
+    // If right child is larger than largest so far
+    if (right < n && regionArray[right].totalDeaths > regionArray[largest].totalDeaths)
+        largest = right;
 
-  // Initialize count array with all zeros.
-  	for (int i = 0; i <= max; ++i) {
-		count[i] = 0;
-  	}
+    // If largest is not root
+    if (largest != i) {
+        swap(regionArray[i], regionArray[largest]);
 
-  // Store the count of each element
-  	for (int i = 0; i < size; i++) {
-    	count[arr[i]]++;
-  	}
+        // Recursively heapify the affected sub-tree
+        heapify(regionArray, n, largest);
+    }
+}
 
-  // Store the cummulative count of each array
-  	for (int i = 1; i <= max; i++) {
-    	count[i] += count[i - 1];
-  	}
+void heapSort(Region regionArray[], int n) {
+    // Build heap (rearrange array)
+    for (int i = n / 2 - 1; i >= 0; i--)
+        heapify(regionArray, n, i);
 
-  // Find the index of each element of the original array in count array, and
-  // place the elements in output array
-  	for (int i = size - 1; i >= 0; i--) {
-    	output[count[arr[i]] - 1] = arr[i];
-    	count[arr[i]]--;
-  	}
+    // One by one extract an element from heap
+    for (int i = n - 1; i >= 0; i--) {
+        // Move current root to end
+        swap(regionArray[0], regionArray[i]);
 
-  // Copy the sorted elements into original array
-  	for (int i = 0; i < size; i++) {
-    	arr[i] = output[i];
-  	}
+        // call max heapify on the reduced heap
+        heapify(regionArray, i, 0);
+    }
 }
