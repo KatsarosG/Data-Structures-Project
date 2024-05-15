@@ -54,5 +54,13 @@ int main() {
         cout << heapSortedArray[i].name << ": " << heapSortedArray[i].totalDeaths << " deaths" << endl;
     }
 
-    return 0;
+    //Counting Sort:
+    Region countingSortedArray[NUMOFREGIONS]; // Create new array
+    copy(begin(regionArray), end(regionArray), begin(countingSortedArray)); // Copy region array to mergeSortedArray
+    countSort(countingSortedArray); // countingSortedArray
+    
+    
+    // Print Counting Sort:
+    cout << "-------------CountingSort by Deaths:--------------\n";
+    printRegionArray(countingSortedArray);
 }

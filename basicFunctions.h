@@ -1,3 +1,5 @@
+//Εδω μπένουν οι δηλώσεις των βασικών συναρτήσεων που θα χρησιμοποιούμε
+
 #pragma once
 #ifndef BASICFUNCTIONS_H
 
@@ -9,11 +11,10 @@
 
 void readFile(ifstream&, Row*);
 void printDataAtIndex(int, Row*);
-void printRegionArray(Region*);
 
 void makeRegionArray(Region*, Row*);
 void calcTotalBirths(Region*);
 void calcTotalDeaths(Region*);
-
+void printRegionArray(Region arr[]); 
 
 #endif
