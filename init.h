@@ -1,5 +1,3 @@
-// Εδω μπένουν οι βασικές δηλώσεις μεταβλήτων, σταθέρων, δομών κλπ.
-
 #pragma once
 #include <vector>
 #ifndef INIT_H
@@ -29,7 +27,10 @@ struct Period {
 struct Region {
 	string name;
 	Period periodArray[NUMOFYEARS];
+
 	int totalBirths;
+	int totalDeaths;
+
 	Period period(int year) {	// Transitions year to array index. e.g. 2005 -> 0, 2006 -> 1 ...
 		int index;
 		if (year < 2005 || year > 2022) {
@@ -39,9 +40,14 @@ struct Region {
 		}
 		return periodArray[index];
 	}
-	void calculateTotalBirths() {
+void calculateTotalBirths() {
 		for (int i = 0; i < NUMOFYEARS; i++) {
 			totalBirths += periodArray[i].births;
+		}
+	}
+	void calculateTotalDeaths(){
+		for (int i = 0; i < NUMOFYEARS; i++){
+			totalDeaths += periodArray[i].deaths;
 		}
 	}
 };
