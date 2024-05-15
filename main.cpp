@@ -1,6 +1,7 @@
 #include "init.h"
 #include "basicFunctions.h"
 #include "sortingFunctions.h"
+#include "searchFunctions.h"
 #include <algorithm>
 using namespace std;
 
@@ -53,6 +54,16 @@ int main() {
     for (int i = 0; i < NUMOFREGIONS; i++) {
         cout << heapSortedArray[i].name << ": " << heapSortedArray[i].totalDeaths << " deaths" << endl;
     }
+
+   int b1,b2;
+   cout << "Insert [b1,b2] range:"; 
+    cin >>  b1;
+    cin >>  b2; 
+    cout<<"---------------- THE REGIONS in that Range of births are:---------\n";
+    
+     birthsinRegion(b1, b2, quickSortedArray);
+
+
 
     return 0;
 }
