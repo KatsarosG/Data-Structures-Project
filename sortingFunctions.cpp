@@ -112,23 +112,18 @@ void heapSort(Region regionArray[], int n) {
 
 void countSort(Region arr[]) {
   
-  int output[NUMOFREGIONS];
-  int count[NUMOFREGIONS];
+  int output[NUMOFREGIONS-1];
+  int count[NUMOFREGIONS-1];
   int max = arr[0].totalDeaths;
 
-  for (int i = 1; i < NUMOFREGIONS; i++) {
-    if (arr[i].totalDeaths > max)
-      max = arr[i].totalDeaths;
+  for (int i = 0; i < NUMOFREGIONS; i++) {
+    count[i] = 0;
   }
-cout<<"test\n";
-  // Initialize count array with all zeros.
-  for (int i = 0; i <= NUMOFREGIONS; ++i) {
-	cout<<i<<endl;
-	count[i] = 0;
-  }
-cout<<"test2\n";
 
-  // Store the count of each element
+  for (int i = 0; i <= max; ++i) {
+	  count[arr[i].totalDeaths] = count[arr[i].totalDeaths] + 1;
+  }
+
   for (int i = 0; i <NUMOFREGIONS; i++) {
     count[arr[i].totalDeaths]++;
   }
@@ -138,15 +133,14 @@ cout<<"test2\n";
     count[i] += count[i - 1];
   }
 
-  // Find the index of each element of the original array in count array, and
-  // place the elements in output array
   for (int i = NUMOFREGIONS - 1; i >= 0; i--) {
     output[count[arr[i].totalDeaths] - 1] = arr[i].totalDeaths;
     count[arr[i].totalDeaths]--;
   }
 
   // Copy the sorted elements into original array
-  for (int i = 0; i < NUMOFREGIONS; i++) {
-    arr[i].totalDeaths = output[i];
+  for (int i = max; i <= 1; i--) {
+    output[count[arr[i].totalDeaths]] = arr[i].totalDeaths;
+    count[arr[i].totalDeaths] = count[arr[i].totalDeaths] - 1;
   }
 }
