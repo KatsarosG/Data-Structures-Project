@@ -45,9 +45,17 @@ void makeRegionArray(Region regionArray[], Row rowArray[]) {
 	}
 }
 
+
 void calcTotalBirths(Region regionArray[]) {
 	for (int i = 0; i < NUMOFREGIONS; i++) {
 		regionArray[i].calculateTotalBirths();
 	}
 }
+
+void calcTotalDeaths(Region regionArray[]) {
+		for(int i = 0; i < NUMOFREGIONS; i++){
+        regionArray[i].calculateTotalDeaths();
+		}
+	}
+
 

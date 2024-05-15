@@ -1,5 +1,3 @@
-//Εδω μπένουν οι δηλώσεις των βασικών συναρτήσεων που θα χρησιμοποιούμε
-
 #pragma once
 #ifndef BASICFUNCTIONS_H
 
@@ -14,4 +12,7 @@ void printDataAtIndex(int, Row*);
 
 void makeRegionArray(Region*, Row*);
 void calcTotalBirths(Region*);
+void calcTotalDeaths(Region*);
+
+
 #endif
