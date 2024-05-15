@@ -11,10 +11,8 @@ void readFile(ifstream&, Row*);
 void printDataAtIndex(int, Row*);
 
 void makeRegionArray(Region*, Row*);
-<<<<<<< Updated upstream
-=======
 void calcTotalBirths(Region*);
 void calcTotalDeaths(Region*);
->>>>>>> Stashed changes
+
 
 #endif
