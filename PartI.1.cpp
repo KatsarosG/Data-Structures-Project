@@ -26,7 +26,7 @@ int main() {
 	calcTotalBirths(regionArray);
 	
 	cout<<"\n-------------Non-Sorted Array:--------------\n";
- 	printRegionArray(regionArray); 
+ 	printRegionArrayTotalBirths(regionArray); 
   	// QuickSort
 	Region quickSortedArray[NUMOFREGIONS];	// Create new array
 	copy(begin(regionArray), end(regionArray), begin(quickSortedArray)); // Copy region array to quickSortedArray
@@ -36,7 +36,7 @@ int main() {
 	int quickSortDuration = int(clockEnd - clockStart);
 
 	cout<<"\n-------------QuickSortedArray:--------------\n";
-	printRegionArray(quickSortedArray);  
+	printRegionArrayTotalBirths(quickSortedArray);  
 	// MergeSort:
 	Region mergeSortedArray[NUMOFREGIONS];	// Create new array
 	copy(begin(regionArray), end(regionArray), begin(mergeSortedArray));	// Copy region array to mergeSortedArray
@@ -46,7 +46,7 @@ int main() {
 	int mergeSortDuration = int(clockEnd - clockStart);
 	
   	cout<<"\n-------------MergeSortedArray:--------------\n";
-	printRegionArray(mergeSortedArray);
+	printRegionArrayTotalBirths(mergeSortedArray);
   	cout<<"\n-------------Durations:--------------\n";
 	cout << "Duration of quickSort: " << quickSortDuration << " clock ticks" << endl;
 	cout << "Duration of mergeSort: " << mergeSortDuration << " clock ticks" <<endl;

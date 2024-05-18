@@ -107,3 +107,35 @@ void heapSort(Region regionArray[], int n) {
         heapify(regionArray, i, 0);
     }
 }
+
+int findMaxDeaths(Region regionArray[]) {
+	int max = regionArray[0].totalDeaths;
+	for (int i = 0; i < NUMOFREGIONS; i++) {
+		if (regionArray[i].totalDeaths > max)
+			max = regionArray[i].totalDeaths;
+	}
+	return max;
+}
+
+void countingSort(Region arrayIn[], Region arrayOut[]) {
+	int k = findMaxDeaths(arrayIn);
+	int C[k];
+	Region B[NUMOFREGIONS];
+	// Initialize array C = [0, 0, ..., 0]
+	for (int i = 0; i <= k; i++) {
+		C[i] = 0;
+	}
+	
+	// C[[A[i]]] <- Εμφανίσεις της A[i]
+	for (int j = 0; j < NUMOFREGIONS; j++) {
+		C[arrayIn[j].totalDeaths] = C[arrayIn[j].totalDeaths]+1;
+	}
+	// C <- A[j], A[j] <= i
+	for (int i = 1; i <= k; i++) {
+		C[i] = C[i] + C[i-1];
+	}
+	for (int i = NUMOFREGIONS-1; i >= 0; i--) {
+			arrayOut[C[arrayIn[i].totalDeaths]-1] = arrayIn[i];
+			C[arrayIn[i].totalDeaths] = arrayIn[i].totalDeaths;
+	}
+}
