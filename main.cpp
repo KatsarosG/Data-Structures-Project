@@ -13,12 +13,19 @@ int main() {
 	clock_t clockStart, clockEnd;
 	readFile(DataFile, dataArray);
 	DataFile.close();
+
+	makeRegionArray(regionArray, dataArray);
+    calcTotalBirths(regionArray);
+    calcTotalDeaths(regionArray);
   
-  // QuickSort
+  	// QuickSort
 	Region quickSortedArray[NUMOFREGIONS]; // Create new array
 	copy(begin(regionArray), end(regionArray), begin(quickSortedArray));
 
 	quickSort(quickSortedArray, 0, NUMOFREGIONS-1);
+	
+	printRegionArrayTotalBirths(quickSortedArray);
+
 	int b1,b2;
 	cout << "Insert [b1,b2] range:"; 
 	cin >>  b1;
