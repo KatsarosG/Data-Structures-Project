@@ -10,5 +10,9 @@ void mergeSort(Region*, int, int);
 void quickSort(Region arr[], int low, int high);
 void heapSort(Region arr[], int n);
 
+void countingSort(Region arrayIn[], Region arrayOut[]);
+
+
+
 
 #endif

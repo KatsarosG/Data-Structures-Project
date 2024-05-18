@@ -9,7 +9,8 @@
 
 void readFile(ifstream&, Row*);
 void printDataAtIndex(int, Row*);
-void printRegionArray(Region*);
+void printRegionArrayTotalBirths(Region*);
+void printRegionArrayTotalDeaths(Region*);
 
 void makeRegionArray(Region*, Row*);
 void calcTotalBirths(Region*);

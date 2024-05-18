@@ -1,7 +1,8 @@
 #include "init.h"
 #include "basicFunctions.h"
 #include "sortingFunctions.h"
-#include <algorithm>
+#include "searchFunctions.h"
+#include <time.h>
 using namespace std;
 
 ifstream DataFile("Data(Edited).txt");
@@ -9,6 +10,7 @@ Row dataArray[NUMOFENTRIES];
 Region regionArray[NUMOFREGIONS];
 
 int main() {
+	clock_t clockStart, clockEnd;
     readFile(DataFile, dataArray);
     DataFile.close();
     
@@ -16,43 +18,13 @@ int main() {
     calcTotalBirths(regionArray);
     calcTotalDeaths(regionArray);
 
-    for (int i = 0; i < NUMOFREGIONS; i++) {
-        cout << regionArray[i].name << ": " << regionArray[i].totalBirths << endl;
-    }
-    cout << "\n--------\n";
-  
-    // QuickSort
-    Region quickSortedArray[NUMOFREGIONS]; // Create new array
-    copy(begin(regionArray), end(regionArray), begin(quickSortedArray));
-
-    quickSort(quickSortedArray, 0, NUMOFREGIONS-1);
-    // Print QuickSorted Array
-    cout << "-------------QuickSortedArray:--------------\n";
-    for (int i = 0; i < NUMOFREGIONS; i++) {
-        cout << quickSortedArray[i].name << ": " << quickSortedArray[i].totalBirths << endl;
-    }
-  
-    // MergeSort:
-    Region mergeSortedArray[NUMOFREGIONS]; // Create new array
-    copy(begin(regionArray), end(regionArray), begin(mergeSortedArray)); // Copy region array to mergeSortedArray
-    mergeSort(mergeSortedArray, 0, NUMOFREGIONS-1); // Merge sort mergeSortedArray
+   int b1,b2;
+   cout << "Insert [b1,b2] range:"; 
+    cin >>  b1;
+    cin >>  b2; 
+    cout<<"---------------- THE REGIONS in that Range of births are:---------\n";
     
-    // Print MergeSortedArray:
-    cout << "-------------MergeSortedArray:--------------\n";
-    for (int i = 0; i < NUMOFREGIONS; i++) {
-        cout << mergeSortedArray[i].name << ": " << mergeSortedArray[i].totalBirths << endl;
-    }
-
-    // HeapSort:
-    Region heapSortedArray[NUMOFREGIONS]; // Create new array
-    copy(begin(regionArray), end(regionArray), begin(heapSortedArray)); // Copy region array to heapSortedArray
-    heapSort(heapSortedArray, NUMOFREGIONS); // Heap sort heapSortedArray
-    
-    // Print HeapSortedArray:
-    cout << "-------------HeapSortedArray by Deaths:--------------\n";
-    for (int i = 0; i < NUMOFREGIONS; i++) {
-        cout << heapSortedArray[i].name << ": " << heapSortedArray[i].totalDeaths << " deaths" << endl;
-    }
+     birthsinRegion(b1, b2, quickSortedArray);
 
     return 0;
 }

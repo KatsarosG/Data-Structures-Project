@@ -24,9 +24,15 @@ void readFile(ifstream &file, Row RowStructArray[]) {
 	}
 }
 
-void printRegionArray(Region arr[]) {
+void printRegionArrayTotalBirths(Region arr[]) {
 	for (int i = 0; i < NUMOFREGIONS; i++) {
 		cout << arr[i].name << ": " << arr[i].totalBirths << endl;
+	}
+}
+
+void printRegionArrayTotalDeaths(Region arr[]) {
+	for (int i = 0; i < NUMOFREGIONS; i++) {
+		cout << arr[i].name << ": " << arr[i].totalDeaths << endl;
 	}
 }
 
