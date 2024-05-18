@@ -31,7 +31,7 @@ int main() {
 	cin >>  b1;
 	cin >>  b2; 
 	cout<<"---------------- THE REGIONS in that Range of births are:---------\n";
-	birthsinRegion(b1, b2, quickSortedArray);
+	birthsInRange(b1, b2, quickSortedArray);
 
 	return 0;
 }

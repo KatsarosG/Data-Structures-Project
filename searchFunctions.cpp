@@ -26,7 +26,7 @@ int binarySearch(Region arr[], int low, int high, int x) {
     return -1;
 }
 
-void birthsinRegion(int b1, int b2, Region arr[]) {
+void birthsInRange(int b1, int b2, Region arr[]) {
     int result;
     b1 = b1 - 1;
     do {
