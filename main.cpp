@@ -11,20 +11,20 @@ Region regionArray[NUMOFREGIONS];
 
 int main() {
 	clock_t clockStart, clockEnd;
-    readFile(DataFile, dataArray);
-    DataFile.close();
-    
-    makeRegionArray(regionArray, dataArray);
-    calcTotalBirths(regionArray);
-    calcTotalDeaths(regionArray);
+	readFile(DataFile, dataArray);
+	DataFile.close();
 
-   int b1,b2;
-   cout << "Insert [b1,b2] range:"; 
-    cin >>  b1;
-    cin >>  b2; 
-    cout<<"---------------- THE REGIONS in that Range of births are:---------\n";
-    
-     birthsinRegion(b1, b2, quickSortedArray);
+	makeRegionArray(regionArray, dataArray);
+	calcTotalBirths(regionArray);
+	calcTotalDeaths(regionArray);
 
-    return 0;
+	int b1,b2;
+	cout << "Insert [b1,b2] range:"; 
+	cin >>  b1;
+	cin >>  b2; 
+	cout<<"---------------- THE REGIONS in that Range of births are:---------\n";
+
+	birthsinRegion(b1, b2, quickSortedArray);
+
+	return 0;
 }
