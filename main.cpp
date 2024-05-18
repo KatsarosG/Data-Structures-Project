@@ -1,6 +1,7 @@
 #include "init.h"
 #include "basicFunctions.h"
 #include "sortingFunctions.h"
+#include "searchFunctions.h"
 #include <time.h>
 using namespace std;
 
@@ -17,33 +18,13 @@ int main() {
     calcTotalBirths(regionArray);
     calcTotalDeaths(regionArray);
 
-    // HeapSort:
-    Region heapSortedArray[NUMOFREGIONS]; // Create new array
-    copy(begin(regionArray), end(regionArray), begin(heapSortedArray)); // Copy region array to heapSortedArray
-	clockStart = clock();
-    heapSort(heapSortedArray, NUMOFREGIONS); // Heap sort heapSortedArray
-	clockEnd = clock();
-	int heapSortDuration = clockEnd - clockStart;
+   int b1,b2;
+   cout << "Insert [b1,b2] range:"; 
+    cin >>  b1;
+    cin >>  b2; 
+    cout<<"---------------- THE REGIONS in that Range of births are:---------\n";
     
-    // Print HeapSortedArray:
-    cout << "-------------HeapSortedArray by Deaths:--------------\n";
-	printRegionArrayTotalDeaths(heapSortedArray);
+     birthsinRegion(b1, b2, quickSortedArray);
 
-	//Counting Sort:
-	Region countingSortedArray[NUMOFREGIONS];
-    copy(begin(regionArray), end(regionArray), begin(countingSortedArray)); // Copy region array to heapSortedArray
-	clockStart = clock();
-	countingSort(regionArray, countingSortedArray);
-	clockEnd = clock();
-	int countingSortDuration = clockEnd - clockStart;
-	
-	//Print Counting Sorted Array:
-    cout << "-------------countingSorted Array by Deaths:--------------\n";
-	printRegionArrayTotalDeaths(countingSortedArray);
-	
-	//Print Durations
-  	cout<<"\n-------------Durations:--------------\n";
-	cout << "Duration of HeapSort: " << heapSortDuration<< " clock ticks" << endl;
-	cout << "Duration of CountingSort: " << countingSortDuration << " clock ticks" <<endl;
     return 0;
 }
