@@ -35,7 +35,6 @@ void birthsinRegion(int b1, int b2, Region arr[]) {
     } while (result == -1 && b1 <= b2);
 	
 
-	cout << result << " : " << b1 << " | " << b2 << endl;
 	if (result >= 0 && b1 <= b2) {
 		for (int i = result; i < NUMOFREGIONS && arr[i].totalBirths <= b2; i++) {
 			cout << arr[i].name << ": " << arr[i].totalBirths << endl;
