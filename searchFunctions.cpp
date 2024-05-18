@@ -33,8 +33,14 @@ void birthsinRegion(int b1, int b2, Region arr[]) {
         b1 = b1 + 1; // Increment to avoid an if statement
         result = binarySearch(arr, 0, NUMOFREGIONS - 1, b1);
     } while (result == -1 && b1 <= b2);
+	
 
-    for (int i = result; i < NUMOFREGIONS && arr[i].totalBirths <= b2; i++) {
-        cout << arr[i].name << ": " << arr[i].totalBirths << endl;
-    }
+	cout << result << " : " << b1 << " | " << b2 << endl;
+	if (result >= 0 && b1 <= b2) {
+		for (int i = result; i < NUMOFREGIONS && arr[i].totalBirths <= b2; i++) {
+			cout << arr[i].name << ": " << arr[i].totalBirths << endl;
+		}
+	} else {
+		cout << "No Births Found At This Range!" << endl;
+	}
 }
