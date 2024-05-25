@@ -44,7 +44,7 @@ int main() {
 	//Print Durations
   	cout<<"\n-------------Durations:--------------\n";
 	cout << "Duration of Binary Search: " << binaryDuration<< " clock ticks" << endl;
-	cout << "Duration of Binary Interpolation Search: " << BISDuration << " clock ticks" <<endl;
+	cout << "Duration of Interpolation Search: " << BISDuration << " clock ticks" <<endl;
 
     return 0;
 }
