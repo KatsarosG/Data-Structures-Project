@@ -6,7 +6,7 @@ main:
 	$(CC) -c sortingFunctions.cpp	# Make object file for sortingFunctions.cpp
 	$(CC) -c searchFunctions.cpp
 	$(CC) -o main.out searchFunctions.o basicFunctions.o sortingFunctions.o main.o	# Link object files together to create main.out
-
+  
 part11:
 	$(CC) -c basicFunctions.cpp
 	$(CC) -c sortingFunctions.cpp
