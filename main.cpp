@@ -24,14 +24,16 @@ int main() {
 
 	quickSort(quickSortedArray, 0, NUMOFREGIONS-1);
 	
-	printRegionArrayTotalBirths(quickSortedArray);
-
 	int b1,b2;
-	cout << "Insert [b1,b2] range:"; 
-	cin >>  b1;
-	cin >>  b2; 
+	cout << "Give Range Start: "; 
+	cin >> b1;
+	cout << "Give Range End: ";
+	cin >> b2; 
 	cout<<"---------------- THE REGIONS in that Range of births are:---------\n";
-	birthsInRange(b1, b2, quickSortedArray);
+	cout << "--With Binary Search:--" << endl;
+	birthsInRangeBinary(b1, b2, quickSortedArray);
+	cout << "\n--With Interpolation Search:--" << endl;
+	birthsInRangeInterpolation(b1, b2, quickSortedArray);
 
 	return 0;
 }
