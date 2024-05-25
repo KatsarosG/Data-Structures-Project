@@ -7,7 +7,8 @@
 #include "init.h"
 
 // Function to print regions with births in a given range
-void birthsInRange(int b1, int b2, Region arr[]);
+void birthsInRangeBinary(int b1, int b2, Region arr[]);
+void birthsInRangeInterpolation(int b1, int b2, Region arr[]);
 
 
 #endif
