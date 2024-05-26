@@ -6,10 +6,11 @@
 
 #include "init.h"
 
-int binarySearch(Region arr[], int low, int high, int x);
-
 // Function to print regions with births in a given range
-void birthsinRegion(int b1, int b2, Region arr[]);
+void birthsInRangeBinary(int b1, int b2, Region arr[]);
+void birthsInRangeInterpolation(int b1, int b2, Region arr[]);
+
+void birthsInRangeBIS(int b1, int b2, Region arr[]);
 
 
 #endif

@@ -24,14 +24,23 @@ int main() {
 
 	quickSort(quickSortedArray, 0, NUMOFREGIONS-1);
 	
-	printRegionArrayTotalBirths(quickSortedArray);
-
+	// Ask Range
 	int b1,b2;
-	cout << "Insert [b1,b2] range:"; 
-	cin >>  b1;
-	cin >>  b2; 
+	cout << "Give Range Start: "; 
+	cin >> b1;
+	cout << "Give Range End: ";
+	cin >> b2; 
 	cout<<"---------------- THE REGIONS in that Range of births are:---------\n";
-	birthsinRegion(b1, b2, quickSortedArray);
+	
+	clockStart = clock();
+	// BIS with no optimization
+	birthsInRangeBIS(b1, b2, quickSortedArray);
+	clockEnd = clock();
+
+	int duration = clockEnd - clockStart;
+	
+	//Print Durations	
+	cout << "Duration of BIS with no optimization: " << duration << " clock ticks" << endl; 
 
 	return 0;
 }
