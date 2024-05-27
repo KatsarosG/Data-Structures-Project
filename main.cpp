@@ -42,5 +42,15 @@ int main() {
 	//Print Durations	
 	cout << "Duration of BIS with no optimization: " << duration << " clock ticks" << endl; 
 
+	clockStart = clock();
+	// BIS with optimization
+	birthsInRangeBIS(b1, b2, quickSortedArray);
+	clockEnd = clock();
+
+	duration = clockEnd - clockStart;
+	
+	//Print Durations	
+	cout << "Duration of BIS with optimization: " << duration << " clock ticks" << endl;
+
 	return 0;
 }
