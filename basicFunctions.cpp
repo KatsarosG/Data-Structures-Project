@@ -57,7 +57,6 @@ void makeRegionArray(Region regionArray[], Row rowArray[]) {
 	}
 }
 
-
 void calcTotalBirths(Region regionArray[]) {
 	for (int i = 0; i < NUMOFREGIONS; i++) {
 		regionArray[i].calculateTotalBirths();
@@ -68,6 +67,43 @@ void calcTotalDeaths(Region regionArray[]) {
 		for(int i = 0; i < NUMOFREGIONS; i++){
         regionArray[i].calculateTotalDeaths();
 		}
+}
+
+// Part II
+vector<Node> makeNodeVector(Region regArr[]) {
+	vector<Node> vec(NUMOFREGIONS);
+	for (int i = 0; i < NUMOFREGIONS; i++) {
+		vec[i].region = regArr[i];
+		vec[i].left = -1;
+		vec[i].right = -1;
+		vec[i].parent = -1;
 	}
+	return vec;	
+}
+
+void findRelation(vector<Node> &vec, int i, int k) {
+	if (vec[i].region.name.compare(vec[k].region.name) > 0) {
+		if (vec[k].right == -1) {
+			vec[i].parent = k;
+			vec[k].right = i;
+		} else {
+			findRelation(vec, i, vec[k].right);
+		}
+	} else {
+		if (vec[k].left== -1) {
+			vec[i].parent = k;
+			vec[k].left = i;
+		} else {
+			findRelation(vec, i, vec[k].left);
+		}
+	
+	}
+}
+
+void makeTree(vector<Node> &vec) {
+	for (int i = 1; i < NUMOFREGIONS; i++) {
+		findRelation(vec, i, 0);
+	}
+}
 
 

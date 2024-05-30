@@ -8,6 +8,7 @@ using namespace std;
 ifstream DataFile("Data(Edited).txt");
 Row dataArray[NUMOFENTRIES];
 Region regionArray[NUMOFREGIONS];
+vector<Node> nodeVector(NUMOFREGIONS);
 
 int main() {
 	clock_t clockStart, clockEnd;
@@ -18,29 +19,15 @@ int main() {
     calcTotalBirths(regionArray);
     calcTotalDeaths(regionArray);
   
-  	// QuickSort
-	Region quickSortedArray[NUMOFREGIONS]; // Create new array
-	copy(begin(regionArray), end(regionArray), begin(quickSortedArray));
-
-	quickSort(quickSortedArray, 0, NUMOFREGIONS-1);
+	nodeVector = makeNodeVector(regionArray);
+	makeTree(nodeVector);
 	
-	// Ask Range
-	int b1,b2;
-	cout << "Give Range Start: "; 
-	cin >> b1;
-	cout << "Give Range End: ";
-	cin >> b2; 
-	cout<<"---------------- THE REGIONS in that Range of births are:---------\n";
-	
-	clockStart = clock();
-	// BIS with no optimization
-	birthsInRangeBIS(b1, b2, quickSortedArray);
-	clockEnd = clock();
-
-	int duration = clockEnd - clockStart;
-	
-	//Print Durations	
-	cout << "Duration of BIS with no optimization: " << duration << " clock ticks" << endl; 
+	for (int i = 0; i < NUMOFREGIONS; i++) {
+		cout << i << ": " << nodeVector[i].region.name << ": " << endl;
+		cout << "\tParent: " << nodeVector[i].parent << endl;
+		cout << "\tLeft: " << nodeVector[i].left << endl;
+		cout << "\tRight: " << nodeVector[i].right << endl;
+	}
 
 	return 0;
 }
