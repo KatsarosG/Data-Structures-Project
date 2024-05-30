@@ -29,15 +29,5 @@ int main() {
 		cout << "\tRight: " << nodeVector[i].right << endl;
 	}
 
-	clockStart = clock();
-	// BIS with optimization
-	birthsInRangeBIS(b1, b2, quickSortedArray);
-	clockEnd = clock();
-
-	duration = clockEnd - clockStart;
-	
-	//Print Durations	
-	cout << "Duration of BIS with optimization: " << duration << " clock ticks" << endl;
-
 	return 0;
 }
