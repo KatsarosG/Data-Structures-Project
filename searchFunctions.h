@@ -11,6 +11,7 @@ void birthsInRangeBinary(int b1, int b2, Region arr[]);
 void birthsInRangeInterpolation(int b1, int b2, Region arr[]);
 
 void birthsInRangeBIS(int b1, int b2, Region arr[]);
+void birthsInRangeOptBIS(int b1, int b2, Region arr[]);
 
 
 #endif
