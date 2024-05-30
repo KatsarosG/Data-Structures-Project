@@ -163,6 +163,7 @@ void birthsInRangeBIS(int b1, int b2, Region arr[]) {
 	}
 }
 
+// This Version of optBIS Is broken. Working one is at github branch: OptBIS
 int optBIS(Region arr[], int x) {
 	int left = 0;
 	int right = NUMOFREGIONS - 1;
