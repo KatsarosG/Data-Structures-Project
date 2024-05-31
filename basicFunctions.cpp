@@ -106,8 +106,8 @@ void makeTree(vector<Node> &vec) {
 	}
 }
 
-void resetNode(vector<Node> &vec,int i ){
-    if(vec[i].right!=-1){
+void resetNode(vector<Node> &vec, int i){
+    if(vec[i].right!=-1){	
         resetNode(vec,vec[i].right);
    }
     if(vec[i].left!=-1){
@@ -115,8 +115,14 @@ void resetNode(vector<Node> &vec,int i ){
    }
    vec[i].right = -1 ;
    vec[i].left = -1 ;
+}
 
-
+int findOrderSuccessor(vector<Node> &vec, int k) {
+	if (vec[k].left == -1) {
+		return k;
+	} else {
+		return findOrderSuccessor(vec, vec[k].left);
+	}
 }
 
 
