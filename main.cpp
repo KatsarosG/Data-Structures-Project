@@ -23,17 +23,37 @@ int main() {
 	// make nodeVector
 	nodeVector = makeNodeVector(regionArray);
 	makeTree(nodeVector);
-	
-	// print tree
-	/*
-	for (int i = 0; i < NUMOFREGIONS; i++) {
-		cout << i << ": " << nodeVector[i].region.name << ": " << endl;
-		cout << "\tParent: " << nodeVector[i].parent << endl;
-		cout << "\tLeft: " << nodeVector[i].left << endl;
-		cout << "\tRight: " << nodeVector[i].right << endl;
-	}
-	*/
-	
+
+	int found;
+    string searchString;
+    cout << "Type Region name to delete: ";
+    getline(cin, searchString); // Input searchString for region
+    found = searchTree(nodeVector, searchString, 0); // found = index of region, -1: not Found
+
+    if (found != -1) {        // if found
+        int tempRoot =0;
+          tempRoot = nodeVector[found].parent;
+
+
+         int  tempRightChild  = nodeVector[found].right;
+        resetNode(nodeVector,nodeVector[found].parent);
+
+        nodeVector.erase(nodeVector.begin() + found);
+        findRelation(nodeVector,tempRightChild,tempRoot);
+
+
+
+    } else {
+        cout << "Region Not Found!" << endl;
+    }
+  // print tree
+   for (int i = 0; i < NUMOFREGIONS; i++) {
+        cout << i << ": " << nodeVector[i].region.name << ": " << endl;
+        cout << "\tParent: " << nodeVector[i].parent << endl;
+        cout << "\tLeft: " << nodeVector[i].left << endl;
+        cout << "\tRight: " << nodeVector[i].right << endl;
+    }	
+	/*	
 	// Question 2: Search Tree
 	string searchString;
 	cout << "Type Region name to search: ";
@@ -49,6 +69,7 @@ int main() {
 	} else {
 		cout << "Region Not Found!" << endl;
 	}
+	*/
 
 	return 0;
 }

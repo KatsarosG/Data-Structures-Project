@@ -106,4 +106,17 @@ void makeTree(vector<Node> &vec) {
 	}
 }
 
+void resetNode(vector<Node> &vec,int i ){
+    if(vec[i].right!=-1){
+        resetNode(vec,vec[i].right);
+   }
+    if(vec[i].left!=-1){
+        resetNode(vec,vec[i].left);
+   }
+   vec[i].right = -1 ;
+   vec[i].left = -1 ;
+
+
+}
+
 
