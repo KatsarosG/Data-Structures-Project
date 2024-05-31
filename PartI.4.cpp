@@ -43,7 +43,7 @@ int main() {
 	cout << "----With Optimization:----\n";
 	clockStart = clock();
 	// BIS with optimization
-	birthsInRangeBIS(b1, b2, quickSortedArray);
+	birthsInRangeOptBIS(b1, b2, quickSortedArray);
 	clockEnd = clock();
 
 	int durationOpt = clockEnd - clockStart;
