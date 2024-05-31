@@ -9,10 +9,8 @@ ifstream DataFile("Data(Edited).txt");
 Row dataArray[NUMOFENTRIES];
 Region regionArray[NUMOFREGIONS];
 vector<Node> nodeVector(NUMOFREGIONS);
-void Question4();
-
 void Question2();
-void Question3();
+void Question4();
 
 int main() {
 	clock_t clockStart, clockEnd;
