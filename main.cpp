@@ -26,38 +26,60 @@ int main() {
 	nodeVector = makeNodeVector(regionArray);
 	makeTree(nodeVector);
 
-  // print tree
-   for (int i = 0; i < nodeVector.size(); i++) {
-        cout << i << ": " << nodeVector[i].region.name << ": " << endl;
-        cout << "\tParent: " << nodeVector[i].parent << endl;
-        cout << "\tLeft: " << nodeVector[i].left << endl;
-        cout << "\tRight: " << nodeVector[i].right << endl;
-    }	
+	Question2();
+	Question3();
+	Question2();
 
-   Question4();
-
-  // print tree
-   for (int i = 0; i < nodeVector.size(); i++) {
-        cout << i << ": " << nodeVector[i].region.name << ": " << endl;
-        cout << "\tParent: " << nodeVector[i].parent << endl;
-        cout << "\tLeft: " << nodeVector[i].left << endl;
-        cout << "\tRight: " << nodeVector[i].right << endl;
-    }	
+	// print tree
+	/*
+	for (int i = 0; i < nodeVector.size(); i++) {
+		cout << i << ": " << nodeVector[i].region.name << ": " << endl;
+		cout << "\tParent: " << nodeVector[i].parent << endl;
+		cout << "\tLeft: " << nodeVector[i].left << endl;
+		cout << "\tRight: " << nodeVector[i].right << endl;
+	}
+	*/
 	return 0;
 }
 
 void Question2() {
 	string searchString;
-	cout << "Type Region name to search: ";
+	cout << "\nType Region name to search: ";
 	getline(cin >> ws, searchString); // Input searchString for region
 	int found = searchTree(nodeVector, searchString, 0); // found = index of region, -1: not Found
 	if (found != -1) {		// if found
 		int searchPeriod;
 		cout << "Type Period [2005-2022]: ";	// ask for period
 		cin >> searchPeriod;
-		int births;
-		births = nodeVector[found].region.period(searchPeriod).births; // get births of found region and period
-		cout << "Births in " << searchString << " on " << searchPeriod << " are: " << births << endl; // print output
+		if (searchPeriod > 2005 && searchPeriod < 2022) {
+			int births;
+			births = nodeVector[found].region.period(searchPeriod)->births; // get births of found region and period
+			cout << "Births in " << searchString << " on " << searchPeriod << " are: " << births << endl; // print output
+		} else {
+			cout << "Year must be between 2005 and 2022!" << endl;
+		}
+	} else {
+		cout << "Region Not Found!" << endl;
+	}
+}
+
+void Question3() {
+	string searchString;
+		cout << "\nType Region name to modify: ";
+	getline(cin >> ws, searchString); // Input searchString for region
+	int found = searchTree(nodeVector, searchString, 0); // found = index of region, -1: not Found
+	if (found != -1) {		// if found
+		int searchPeriod = 0;
+		cout << "Type Period [2005-2022]: ";	// ask for period
+		cin >> searchPeriod;
+		if (searchPeriod > 2005 && searchPeriod < 2022) {
+			int births;
+			cout << "Type new Birth cout for year " << searchPeriod << ": ";
+			cin >> births;
+			nodeVector[found].region.period(searchPeriod)->births = births;
+		} else {
+			cout << "Year must be between 2005 and 2022!" << endl;
+		}
 	} else {
 		cout << "Region Not Found!" << endl;
 	}
