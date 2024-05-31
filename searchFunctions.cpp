@@ -114,7 +114,7 @@ int BIS(Region arr[], int x) {
 			int tempRight, tempLeft;
 			int tempIndex = next + i*sqrt(size);
 			while (x > arr[tempIndex].totalBirths && tempIndex < right) {
-				i = i + 1;
+				i = i + 1;////////////////
 				tempRight = tempIndex;
 				tempLeft = tempIndex;
 				tempIndex = next + i*sqrt(size);
@@ -126,7 +126,7 @@ int BIS(Region arr[], int x) {
 			// If x < arr[next] : step by -sqrt(size)
 			int tempIndex = next - i*sqrt(size);
 			while (x < arr[tempIndex].totalBirths && tempIndex > left) {
-				i += 1;
+				i += 1;////////// i = 2 * i
 				tempIndex = next - i*sqrt(size);
 			}
 			right = next - (i - 1)*sqrt(size);
@@ -163,3 +163,77 @@ void birthsInRangeBIS(int b1, int b2, Region arr[]) {
 	}
 }
 
+// This Version of optBIS Is broken. Working one is at github branch: OptBIS
+int optBIS(Region arr[], int x) {
+	int left = 0;
+	int right = NUMOFREGIONS - 1;
+	int size = right - left + 1;
+	int next = ceil(size*(float(x - arr[left].totalBirths) / (arr[right].totalBirths - arr[left].totalBirths)));
+	
+	// If x <= max
+	if (x <= arr[NUMOFREGIONS-1].totalBirths) while (x != arr[next].totalBirths) {
+		int i = 0;
+		size = right - left + 1;
+		// If size <= 3 : Direct Search
+		if (size <= 3) {
+			for (int j = left; j <= right; j++) {
+				if (x == arr[j].totalBirths) {
+					//Success!
+					return j;
+				}
+			}
+			//If not returned then Fail
+			return -1;
+		}
+		// If x > arr[next] : step by +sqrt(size)
+		if (x >= arr[next].totalBirths) {
+			int tempRight, tempLeft;
+			int tempIndex = next + i*sqrt(size);
+			while (x > arr[tempIndex].totalBirths && tempIndex < right) {
+				i = 2 * i;
+				tempRight = tempIndex;
+				tempLeft = tempIndex;
+				tempIndex = next + i*sqrt(size);
+			}
+			
+			right = next + i*sqrt(size);
+			//left = next + (i-1)*sqrt(size);
+		} else if (x < arr[next].totalBirths) {
+			// If x < arr[next] : step by -sqrt(size)
+			int tempIndex = next - i*sqrt(size);
+			while (x < arr[tempIndex].totalBirths && tempIndex > left) {
+				i = 2 * i;
+				tempIndex = next - i*sqrt(size);
+			}
+			right = next - (i - 1)*sqrt(size);
+			//left = next - i*sqrt(size);
+		}
+		next = left + ceil((right - left + 1) * (float(x - arr[left].totalBirths) / (arr[right].totalBirths - arr[left].totalBirths)));
+	}
+	if (x == arr[next].totalBirths) {
+		// Success!
+		return next;
+	} else {
+		// Fail
+		return -1;
+	}
+}
+
+void birthsInRangeOptBIS(int b1, int b2, Region arr[]) {
+    int result;
+    b1 = b1 - 1;
+	// Find First Element In Range
+    do {
+        b1 = b1 + 1; // Increment to avoid an if statement
+		result = optBIS(arr, b1);
+    } while (result == -1 && b1 <= b2);
+ 	
+	// Print Results
+	if (result >= 0 && b1 <= b2) {
+		for (int i = result; i < NUMOFREGIONS && arr[i].totalBirths <= b2; i++) {
+			cout << arr[i].name << ": " << arr[i].totalBirths << endl;
+		}
+	} else {
+		cout << "No Births Found At This Range!" << endl;
+	}
+}

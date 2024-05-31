@@ -40,6 +40,7 @@ struct Region {
 		}
 		return periodArray[index];
 	}
+
 void calculateTotalBirths() {
 		for (int i = 0; i < NUMOFYEARS; i++) {
 			totalBirths += periodArray[i].births;
@@ -50,6 +51,13 @@ void calculateTotalBirths() {
 			totalDeaths += periodArray[i].deaths;
 		}
 	}
+};
+
+struct Node {
+	Region region;
+	int left;
+	int right;
+	int parent;
 };
 
 #endif

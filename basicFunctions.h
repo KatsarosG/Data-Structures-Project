@@ -16,5 +16,8 @@ void makeRegionArray(Region*, Row*);
 void calcTotalBirths(Region*);
 void calcTotalDeaths(Region*);
 
+vector<Node> makeNodeVector(Region[]);
+void findRelation(vector<Node>&, int, int);
+void makeTree(vector<Node>&);
 
 #endif
