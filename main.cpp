@@ -10,6 +10,9 @@ Row dataArray[NUMOFENTRIES];
 Region regionArray[NUMOFREGIONS];
 vector<Node> nodeVector(NUMOFREGIONS);
 
+void Question2();
+void Question3();
+
 int main() {
 	clock_t clockStart, clockEnd;
 	readFile(DataFile, dataArray);
@@ -35,9 +38,17 @@ int main() {
 	*/
 	
 	// Question 2: Search Tree
+	Question2();
+	//Question 3: Modify Node
+	Question2();	
+
+	return 0;
+}
+
+void Question2() {
 	string searchString;
 	cout << "Type Region name to search: ";
-	getline(cin, searchString); // Input searchString for region
+	getline(cin >> ws, searchString); // Input searchString for region
 	int found = searchTree(nodeVector, searchString, 0); // found = index of region, -1: not Found
 	if (found != -1) {		// if found
 		int searchPeriod;
@@ -49,6 +60,23 @@ int main() {
 	} else {
 		cout << "Region Not Found!" << endl;
 	}
+}
 
-	return 0;
+void Question3() {
+	string searchString;
+	cout << "Type Region name to search: ";
+	getline(cin >> ws, searchString); // Input searchString for region
+	int found = searchTree(nodeVector, searchString, 0); // found = index of region, -1: not Found
+	if (found != -1) {		// if found
+		int searchPeriod;
+		cout << "Type Period [2005-2022]: ";	// ask for period
+		while (searchPeriod < 2005 && searchPeriod > 2022)
+			cin >> searchPeriod;
+		int births;
+		births = nodeVector[found].region.period(searchPeriod).births; // get births of found region and period
+		cout << "Births in " << searchString << " on " << searchPeriod << " are: " << births << endl; // print output
+	} else {
+		cout << "Region Not Found!" << endl;
+	}
+
 }
