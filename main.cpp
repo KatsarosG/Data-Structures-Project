@@ -10,6 +10,7 @@ Row dataArray[NUMOFENTRIES];
 Region regionArray[NUMOFREGIONS];
 vector<Node> nodeVector(NUMOFREGIONS);
 void Question2();
+void Question3();
 void Question4();
 
 int main() {
