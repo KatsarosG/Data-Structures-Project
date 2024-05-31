@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <iostream>
 #include <cmath>
+#include <vector>
+#include <string.h>
 
 using namespace std;
 
@@ -236,4 +238,21 @@ void birthsInRangeOptBIS(int b1, int b2, Region arr[]) {
 	} else {
 		cout << "No Births Found At This Range!" << endl;
 	}
+}
+int searchTree(vector<Node>vec, string reg, int k) {
+	if (reg.compare(vec[k].region.name) == 0) {
+		return k;
+	} else if (reg.compare(vec[k].region.name) > 0) {
+		if (vec[k].right != -1) {
+			return searchTree(vec, reg, vec[k].right);
+		} else {
+			return -1;
+		}
+	} else {
+		if (vec[k].left != -1) {
+			return searchTree(vec, reg, vec[k].left);
+		} else {
+			return -1;
+		}
+	}	
 }

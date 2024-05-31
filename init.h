@@ -41,7 +41,7 @@ struct Region {
 		return periodArray[index];
 	}
 
-void calculateTotalBirths() {
+	void calculateTotalBirths() {
 		for (int i = 0; i < NUMOFYEARS; i++) {
 			totalBirths += periodArray[i].births;
 		}
