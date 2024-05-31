@@ -31,14 +31,14 @@ struct Region {
 	int totalBirths;
 	int totalDeaths;
 
-	Period period(int year) {	// Transitions year to array index. e.g. 2005 -> 0, 2006 -> 1 ...
+	Period *period(int year) {	// Transitions year to array index. e.g. 2005 -> 0, 2006 -> 1 ...
 		int index;
 		if (year < 2005 || year > 2022) {
 			cout << "Error: Year must be between 2005 and 2022\n";
 		} else {
 			index = year - 2005; 
 		}
-		return periodArray[index];
+		return &periodArray[index];
 	}
 
 	void calculateTotalBirths() {
