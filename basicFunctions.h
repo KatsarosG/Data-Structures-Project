@@ -20,4 +20,6 @@ vector<Node> makeNodeVector(Region[]);
 void findRelation(vector<Node>&, int, int);
 void makeTree(vector<Node>&);
 
+void resetNode(vector<Node> &vec,int i);
+
 #endif
