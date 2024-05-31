@@ -25,3 +25,10 @@ part13:
 	$(CC) -c searchFunctions.cpp
 	$(CC) -c PartI.3.cpp
 	$(CC) -o partI.3.out searchFunctions.o basicFunctions.o sortingFunctions.o PartI.3.o
+
+part14:
+	$(CC) -c basicFunctions.cpp
+	$(CC) -c sortingFunctions.cpp
+	$(CC) -c searchFunctions.cpp
+	$(CC) -c PartI.4.cpp
+	$(CC) -o partI.4.out searchFunctions.o basicFunctions.o sortingFunctions.o PartI.4.o
