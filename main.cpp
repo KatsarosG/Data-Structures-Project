@@ -142,7 +142,7 @@ void Question4() {
 				nodeVector[parent].right = left;
 				nodeVector[left].parent = parent;
 			}		
-		} else {
+		} else { // if no childs
 			int parent = nodeVector[found].parent;
 			if (nodeVector[parent].left == found) {
 				nodeVector[parent].left = -1;
