@@ -17,8 +17,7 @@ void calcTotalBirths(Region*);
 void calcTotalDeaths(Region*);
 
 vector<Node> makeNodeVector(Region[]);
-void findRelation(vector<Node>&, int, int);
-void makeTree(vector<Node>&);
+void makeTree(vector<Node>&, string);
 
 void resetNode(vector<Node>&, int);
 int findOrderSuccessor(vector<Node>&, int);
