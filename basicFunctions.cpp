@@ -114,4 +114,12 @@ int findOrderSuccessor(vector<Node> &vec, int k) {
 	}
 }
 
+void inorderTraversal(const vector<Node> &vec, int k) {
+    if (k == -1){
+		return;
+	}
+	inorderTraversal(vec, vec[k].left);
+    cout << vec[k].region.name << ": " << vec[k].region.totalBirths<<endl;
+    inorderTraversal(vec, vec[k].right);
+}
 
