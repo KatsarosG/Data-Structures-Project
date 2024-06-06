@@ -149,3 +149,16 @@ void inorderTraversal(const vector<Node> &vec, int k) {
     inorderTraversal(vec, vec[k].right);
 }
 
+int hashingFunction(string key, int m) {
+	int sum = 0;
+	for (int i = 0; i < key.size(); i++) {
+		sum += key[i];
+	}
+	return (sum%m);
+}
+ void makeHashTable(list<Region> list[], Region arr[]) {
+	for (int i = 0; i < NUMOFREGIONS; i++) {
+		int hash = hashingFunction(arr[i].name, M);
+		list[hash].push_back(arr[i]);
+	}
+ }
