@@ -22,4 +22,7 @@ void makeTree(vector<Node>&, string);
 void resetNode(vector<Node>&, int);
 int findOrderSuccessor(vector<Node>&, int);
 
+void inorderTraversal(const vector<Node> &vec, int index);
+
+
 #endif

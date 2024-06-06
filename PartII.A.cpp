@@ -9,6 +9,7 @@ ifstream DataFile("Data(Edited).txt");
 Row dataArray[NUMOFENTRIES];
 Region regionArray[NUMOFREGIONS];
 vector<Node> nodeVector(NUMOFREGIONS);
+void Question1();
 void Question2();
 void Question3();
 void Question4();
@@ -28,22 +29,17 @@ int main() {
 	makeTree(nodeVector, "region");
 
 	// print tree
-	for (int i = 0; i < nodeVector.size(); i++) {
+	/*for (int i = 0; i < nodeVector.size(); i++) {
 		cout << i << ": " << nodeVector[i].region.name << ": " << endl;
 		cout << "\tParent: " << nodeVector[i].parent << endl;
 		cout << "\tLeft: " << nodeVector[i].left << endl;
 		cout << "\tRight: " << nodeVector[i].right << endl;
-	}
+	}*/
 	
-	Question4();
 	
-	// print tree
-	for (int i = 0; i < nodeVector.size(); i++) {
-		cout << i << ": " << nodeVector[i].region.name << ": " << endl;
-		cout << "\tParent: " << nodeVector[i].parent << endl;
-		cout << "\tLeft: " << nodeVector[i].left << endl;
-		cout << "\tRight: " << nodeVector[i].right << endl;
-	}
+	cout<<endl;
+	
+	Question1();
 
 	/*
 	Question2();
@@ -52,6 +48,14 @@ int main() {
 	*/
 
 	return 0;
+}
+
+void Question1() {
+
+	cout << "-----------Inorder Traversal of the BST:-----------" << endl;
+    inorderTraversal(nodeVector, 0);  // Assuming root is at index 0
+    cout << endl;
+
 }
 
 void Question2() {
