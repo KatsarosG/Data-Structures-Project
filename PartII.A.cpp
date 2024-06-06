@@ -25,7 +25,7 @@ int main() {
   	
 	// make nodeVector
 	nodeVector = makeNodeVector(regionArray);
-	makeTree(nodeVector);
+	makeTree(nodeVector, "region");
 
 	// print tree
 	for (int i = 0; i < nodeVector.size(); i++) {

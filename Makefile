@@ -32,3 +32,17 @@ part14:
 	$(CC) -c searchFunctions.cpp
 	$(CC) -c PartI.4.cpp
 	$(CC) -o partI.4.out searchFunctions.o basicFunctions.o sortingFunctions.o PartI.4.o
+
+part2a:
+	$(CC) -c basicFunctions.cpp
+	$(CC) -c sortingFunctions.cpp
+	$(CC) -c searchFunctions.cpp
+	$(CC) -c PartII.A.cpp
+	$(CC) -o partII.A.out searchFunctions.o basicFunctions.o sortingFunctions.o PartII.A.o
+
+part2b:
+	$(CC) -c basicFunctions.cpp
+	$(CC) -c sortingFunctions.cpp
+	$(CC) -c searchFunctions.cpp
+	$(CC) -c PartII.B.cpp
+	$(CC) -o partII.B.out searchFunctions.o basicFunctions.o sortingFunctions.o PartII.B.o
