@@ -1,61 +1,46 @@
 #include "init.h"
 #include "basicFunctions.h"
-#include "sortingFunctions.h"
-#include "searchFunctions.h"
-#include <time.h>
+#include "PartII.B.h"
+#include <vector>
 using namespace std;
 
-ifstream DataFile("Data(Edited).txt");
-Row dataArray[NUMOFENTRIES];
-Region regionArray[NUMOFREGIONS];
-vector<Node> nodeVector(NUMOFREGIONS);
-void Question1(int);
-void Question2(int);
+void QuestionB1(int, const vector<Node>&);
+void QuestionB2(int, const vector<Node>&);
 
-int main() {
-	clock_t clockStart, clockEnd;
-	readFile(DataFile, dataArray);
-	DataFile.close();
-	
-	// make region array
-	makeRegionArray(regionArray, dataArray);
-    calcTotalBirths(regionArray);
-    calcTotalDeaths(regionArray);
-  	
-	// make nodeVector
-	nodeVector = makeNodeVector(regionArray);
-	makeTree(nodeVector, "births");
-
-	Question1(0);
-	Question2(0);
-
-	// print tree
-	/*
-	cout << "\n----------\n";	
-	for (int i = 0; i < nodeVector.size(); i++) {
-		cout << i << ": " << nodeVector[i].region.name << ": " << nodeVector[i].region.totalBirths << ": " << endl;
-		cout << "\tParent: " << nodeVector[i].parent << endl;
-		cout << "\tLeft: " << nodeVector[i].left << endl;
-		cout << "\tRight: " << nodeVector[i].right << endl;
+int PartIIB(const vector<Node> &nodeVector) {
+	// Take user input
+	string action;
+	cout << "What do you want to do? [min/max/exit/help]: "; 
+	cin >> action; 
+	// perform action
+	if (action.compare("help") == 0) {
+		cout << "min	Find region with minimum count of births." << endl 
+			<< "max	Find region with maximum count of births." << endl << endl;
+	} else if (action.compare("min") == 0) {
+		QuestionB1(0, nodeVector);
+	} else if (action.compare("max") == 0) {
+		QuestionB2(0, nodeVector);
+	} else if (action.compare("exit") == 0) {
+		return 0;
+	} else {
+		cout << "Error: Option '" << action << "' not found." << endl << endl;
+		return 1;
 	}
-	*/
-	
-	
-	return 0;
+	return 2;
 }
 
-void Question1(int i) {
+void QuestionB1(int i, const vector<Node> &nodeVector) {
 	if (nodeVector[i].left == -1) {
-		cout << "Region with least total births: " << nodeVector[i].region.name << " with " << nodeVector[i].region.totalBirths << " total births." << endl;
+		cout << "Region with least total births: " << nodeVector[i].region.name << " with " << nodeVector[i].region.totalBirths << " total births." << endl << endl;
 	} else {
-		Question1(nodeVector[i].left);
+		QuestionB1(nodeVector[i].left, nodeVector);
 	}
 }
 
-void Question2(int i) {
+void QuestionB2(int i, const vector<Node> &nodeVector) {
 	if (nodeVector[i].right == -1) {
-		cout << "Region with most total births: " << nodeVector[i].region.name << " with " << nodeVector[i].region.totalBirths << " total births." << endl;
+		cout << "Region with most total births: " << nodeVector[i].region.name << " with " << nodeVector[i].region.totalBirths << " total births." << endl << endl;
 	} else {
-		Question2(nodeVector[i].right);
+		QuestionB2(nodeVector[i].right, nodeVector);
 	}
 }
