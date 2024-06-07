@@ -18,8 +18,6 @@ struct Row {
 	int count;
 };
 
-// e.g. greece.period(2024).births
-
 struct Period {
 	int births;
 	int deaths;

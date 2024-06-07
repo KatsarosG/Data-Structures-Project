@@ -53,3 +53,14 @@ part2c:
 	$(CC) -c searchFunctions.cpp
 	$(CC) -c PartII.C.cpp
 	$(CC) -o partII.C.out searchFunctions.o basicFunctions.o sortingFunctions.o PartII.C.o
+
+part2:
+	$(CC) -c basicFunctions.cpp
+	$(CC) -c sortingFunctions.cpp
+	$(CC) -c searchFunctions.cpp
+	#$(CC) -c PartII.C.cpp
+	$(CC) -c PartII.B.cpp
+	$(CC) -c PartII.A.cpp
+	$(CC) -c PartII.cpp
+	#$(CC) -o partII.out PartII.C.o PartII.B.o PartII.A.o searchFunctions.o basicFunctions.o sortingFunctions.o PartII.o
+	$(CC) -o partII.out PartII.A.o PartII.B.o searchFunctions.o basicFunctions.o sortingFunctions.o PartII.o
