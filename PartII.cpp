@@ -27,13 +27,15 @@ int main() {
 	if (inputTxt.compare("bst") == 0) {
 		// Make node vector
 		nodeVector = makeNodeVector(regionArray);
-		cout << "Binary Search Tree key? [region/births]";
+		cout << "Binary Search Tree key? [region/births]: ";
 		cin >> inputTxt;
 		if (inputTxt.compare("region") == 0) {
+			// Part II A
 			// Make tree with regions
 			makeTree(nodeVector, "region");
 			while (PartIIA(regionArray, nodeVector) != 0) {}	
 		} else if (inputTxt.compare("births") == 0) {
+			// Part II B
 			// Make tree with births
 			makeTree(nodeVector, "births");
 			while (PartIIB(nodeVector) != 0) {}
