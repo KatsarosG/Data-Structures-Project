@@ -81,40 +81,55 @@ vector<Node> makeNodeVector(Region regArr[]) {
 	return vec;	
 }
 
-void findRelation(vector<Node> &vec, int i, int k) {
+void findRelationByRegion(vector<Node> &vec, int i, int k) {
 	if (vec[i].region.name.compare(vec[k].region.name) > 0) {
 		if (vec[k].right == -1) {
 			vec[i].parent = k;
 			vec[k].right = i;
 		} else {
-			findRelation(vec, i, vec[k].right);
+			findRelationByRegion(vec, i, vec[k].right);
 		}
 	} else {
 		if (vec[k].left== -1) {
 			vec[i].parent = k;
 			vec[k].left = i;
 		} else {
-			findRelation(vec, i, vec[k].left);
+			findRelationByRegion(vec, i, vec[k].left);
 		}
 	
 	}
 }
 
-void makeTree(vector<Node> &vec) {
-	for (int i = 1; i < NUMOFREGIONS; i++) {
-		findRelation(vec, i, 0);
+void findRelationByBirths(vector<Node> &vec, int i, int k) {
+	if (vec[i].region.totalBirths > vec[k].region.totalBirths) {
+		if (vec[k].right == -1) {
+			vec[i].parent = k;
+			vec[k].right = i;
+		} else {
+			findRelationByBirths(vec, i, vec[k].right);
+		}
+	} else {
+		if (vec[k].left== -1) {
+			vec[i].parent = k;
+			vec[k].left = i;
+		} else {
+			findRelationByBirths(vec, i, vec[k].left);
+		}
+	
 	}
 }
 
-void resetNode(vector<Node> &vec, int i){
-    if(vec[i].right!=-1){	
-        resetNode(vec,vec[i].right);
-   }
-    if(vec[i].left!=-1){
-        resetNode(vec,vec[i].left);
-   }
-   vec[i].right = -1 ;
-   vec[i].left = -1 ;
+void makeTree(vector<Node> &vec, string index) {
+	if (index == "region") {
+		for (int i = 1; i < NUMOFREGIONS; i++) {
+			findRelationByRegion(vec, i, 0);
+		}
+	} else if (index == "births") {
+		for (int i = 1; i < NUMOFREGIONS; i++) {
+			findRelationByBirths(vec, i, 0);
+		}
+
+	}
 }
 
 int findOrderSuccessor(vector<Node> &vec, int k) {
@@ -125,4 +140,25 @@ int findOrderSuccessor(vector<Node> &vec, int k) {
 	}
 }
 
+void inorderTraversal(const vector<Node> &vec, int k) {
+    if (k == -1){
+		return;
+	}
+	inorderTraversal(vec, vec[k].left);
+    cout << vec[k].region.name << ": " << vec[k].region.totalBirths<<endl;
+    inorderTraversal(vec, vec[k].right);
+}
 
+int hashingFunction(string key, int m) {
+	int sum = 0;
+	for (int i = 0; i < key.size(); i++) {
+		sum += key[i];
+	}
+	return (sum%m);
+}
+ void makeHashTable(list<Region> list[], Region arr[]) {
+	for (int i = 0; i < NUMOFREGIONS; i++) {
+		int hash = hashingFunction(arr[i].name, M);
+		list[hash].push_back(arr[i]);
+	}
+ }

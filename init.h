@@ -7,6 +7,7 @@
 #define NUMOFENTRIES 648
 #define NUMOFYEARS 18
 #define NUMOFREGIONS 18
+#define M 11
 
 using namespace std;
 

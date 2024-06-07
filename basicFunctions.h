@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include <sstream>
+#include <list>
 
 #include "init.h"
 
@@ -17,10 +18,14 @@ void calcTotalBirths(Region*);
 void calcTotalDeaths(Region*);
 
 vector<Node> makeNodeVector(Region[]);
-void findRelation(vector<Node>&, int, int);
-void makeTree(vector<Node>&);
+void makeTree(vector<Node>&, string);
 
 void resetNode(vector<Node>&, int);
 int findOrderSuccessor(vector<Node>&, int);
+
+void inorderTraversal(const vector<Node> &vec, int index);
+
+int hashingFunction(string, int);
+void makeHashTable(list<Region>*, Region*);
 
 #endif

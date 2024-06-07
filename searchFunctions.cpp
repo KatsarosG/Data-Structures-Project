@@ -192,23 +192,23 @@ int optBIS(Region arr[], int x) {
 			int tempRight, tempLeft;
 			int tempIndex = next + i*sqrt(size);
 			while (x > arr[tempIndex].totalBirths && tempIndex < right) {
-				i = 2 * i;
+				i = (2 * i)+1;	// May need fix;
 				tempRight = tempIndex;
 				tempLeft = tempIndex;
 				tempIndex = next + i*sqrt(size);
 			}
 			
 			right = next + i*sqrt(size);
-			//left = next + (i-1)*sqrt(size);
+			left = next + (i-1)*sqrt(size);
 		} else if (x < arr[next].totalBirths) {
 			// If x < arr[next] : step by -sqrt(size)
 			int tempIndex = next - i*sqrt(size);
 			while (x < arr[tempIndex].totalBirths && tempIndex > left) {
-				i = 2 * i;
+				i = (2 * i)+1; // May need fix;
 				tempIndex = next - i*sqrt(size);
 			}
 			right = next - (i - 1)*sqrt(size);
-			//left = next - i*sqrt(size);
+			left = next - i*sqrt(size);
 		}
 		next = left + ceil((right - left + 1) * (float(x - arr[left].totalBirths) / (arr[right].totalBirths - arr[left].totalBirths)));
 	}

@@ -9,7 +9,9 @@ ifstream DataFile("Data(Edited).txt");
 Row dataArray[NUMOFENTRIES];
 Region regionArray[NUMOFREGIONS];
 vector<Node> nodeVector(NUMOFREGIONS);
+void Question1();
 void Question2();
+void Question3();
 void Question4();
 
 int main() {
@@ -24,22 +26,36 @@ int main() {
   	
 	// make nodeVector
 	nodeVector = makeNodeVector(regionArray);
-	makeTree(nodeVector);
-
-	Question2();
-	Question3();
-	Question2();
+	makeTree(nodeVector, "region");
 
 	// print tree
-	/*
-	for (int i = 0; i < nodeVector.size(); i++) {
+	/*for (int i = 0; i < nodeVector.size(); i++) {
 		cout << i << ": " << nodeVector[i].region.name << ": " << endl;
 		cout << "\tParent: " << nodeVector[i].parent << endl;
 		cout << "\tLeft: " << nodeVector[i].left << endl;
 		cout << "\tRight: " << nodeVector[i].right << endl;
-	}
+	}*/
+	
+	
+	cout<<endl;
+	
+	Question1();
+
+	/*
+	Question2();
+	Question3();
+	Question2();
 	*/
+
 	return 0;
+}
+
+void Question1() {
+
+	cout << "-----------Inorder Traversal of the BST:-----------" << endl;
+    inorderTraversal(nodeVector, 0);  // Assuming root is at index 0
+    cout << endl;
+
 }
 
 void Question2() {
@@ -93,18 +109,60 @@ void Question4() {
     found = searchTree(nodeVector, searchString, 0); // found = index of region, -1: not Found
 
     if (found != -1) {        // if found
-		//find order successor
-		int orderSuccessor = findOrderSuccessor(nodeVector, nodeVector[found].right);
-		swap(nodeVector[found].region, nodeVector[orderSuccessor].region);
-		nodeVector[nodeVector[orderSuccessor].parent].left = -1;
-		nodeVector.erase(nodeVector.begin() + orderSuccessor);
-		for (int i = 0; i < nodeVector.size(); i++) {
-			if (nodeVector[i].right > orderSuccessor)
-				nodeVector[i].right--;
-			if (nodeVector[i].left > orderSuccessor)
-				nodeVector[i].left--;
-			if (nodeVector[i].parent > orderSuccessor)
-				nodeVector[i].parent--;
+		if (nodeVector[found].right != -1) { // if right child exists:
+			//find order successor
+			int orderSuccessor = findOrderSuccessor(nodeVector, nodeVector[found].right);
+			swap(nodeVector[found].region, nodeVector[orderSuccessor].region);
+			nodeVector[nodeVector[orderSuccessor].parent].left = -1;
+			nodeVector.erase(nodeVector.begin() + orderSuccessor);
+			for (int i = 0; i < nodeVector.size(); i++) {
+				if (nodeVector[i].right > orderSuccessor)
+					nodeVector[i].right--;
+				if (nodeVector[i].left > orderSuccessor)
+					nodeVector[i].left--;
+				if (nodeVector[i].parent > orderSuccessor)
+					nodeVector[i].parent--;
+			}
+		} else if (nodeVector[found].left != -1) { // if right child does not exist but left child exist
+			int left = nodeVector[found].left;
+			int parent = nodeVector[found].parent;
+			nodeVector.erase(nodeVector.begin() + found);
+			for (int i = 0; i < nodeVector.size(); i++) {
+				if (nodeVector[i].right > found)
+					nodeVector[i].right--;
+				if (nodeVector[i].left > found)
+					nodeVector[i].left--;
+				if (nodeVector[i].parent > found)
+					nodeVector[i].parent--;
+			}
+
+			if (left > found) {left--;}
+			if (parent > found) {parent--;}
+			
+			if (nodeVector[parent].left == found) {
+				nodeVector[parent].left = left;
+				nodeVector[left].parent = parent;
+			} else {
+				nodeVector[parent].right = left;
+				nodeVector[left].parent = parent;
+			}		
+		} else { // if no childs
+			int parent = nodeVector[found].parent;
+			if (nodeVector[parent].left == found) {
+				nodeVector[parent].left = -1;
+			} else {
+				nodeVector[parent].right = -1;
+			}		
+			nodeVector.erase(nodeVector.begin() + found);
+			for (int i = 0; i < nodeVector.size(); i++) {
+				if (nodeVector[i].right > found)
+					nodeVector[i].right--;
+				if (nodeVector[i].left > found)
+					nodeVector[i].left--;
+				if (nodeVector[i].parent > found)
+					nodeVector[i].parent--;
+			}
+			
 		}
 
     } else {
