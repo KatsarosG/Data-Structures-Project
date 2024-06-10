@@ -3,6 +3,6 @@
 
 #include "init.h"
 
-int PartIIB(const vector<Node>&);
+int PartIIB(list<Node>&);
 
 #endif

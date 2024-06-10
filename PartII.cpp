@@ -3,6 +3,7 @@
 #include "searchFunctions.h"
 #include "PartII.A.h"
 #include "PartII.B.h"
+#include <list>
 #include <string.h>
 #include <ostream>
 using namespace std;
@@ -10,7 +11,7 @@ using namespace std;
 ifstream DataFile("Data(Edited).txt");
 Row dataArray[NUMOFENTRIES];
 Region regionArray[NUMOFREGIONS];
-vector<Node> nodeVector(NUMOFREGIONS);
+list<Node> nodeVector;
 
 int main() {
 	readFile(DataFile, dataArray);
@@ -26,7 +27,7 @@ int main() {
 	cin >> inputTxt;
 	if (inputTxt.compare("bst") == 0) {
 		// Make node vector
-		nodeVector = makeNodeVector(regionArray);
+		makeNodeVector(nodeVector, regionArray);
 		cout << "Binary Search Tree key? [region/births]: ";
 		cin >> inputTxt;
 		if (inputTxt.compare("region") == 0) {

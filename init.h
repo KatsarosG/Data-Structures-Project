@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <list>
 #define NUMOFENTRIES 648
 #define NUMOFYEARS 18
 #define NUMOFREGIONS 18
@@ -54,9 +55,10 @@ struct Region {
 
 struct Node {
 	Region region;
-	int left;
-	int right;
-	int parent;
+	list<Node>::iterator left;
+	list<Node>::iterator right;
+	list<Node>::iterator parent;
+	bool nullNode = false;
 };
 
 #endif

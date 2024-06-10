@@ -70,83 +70,81 @@ void calcTotalDeaths(Region regionArray[]) {
 }
 
 // Part II
-vector<Node> makeNodeVector(Region regArr[]) {
-	vector<Node> vec(NUMOFREGIONS);
+void makeNodeVector(list<Node> &lst, Region regArr[]) {
 	for (int i = 0; i < NUMOFREGIONS; i++) {
-		vec[i].region = regArr[i];
-		vec[i].left = -1;
-		vec[i].right = -1;
-		vec[i].parent = -1;
+		Node tempNode;
+		tempNode.region = regArr[i];
+		tempNode.left = lst.end();
+		tempNode.right = lst.end();
+		tempNode.parent = lst.end();
+		lst.push_back(tempNode);
 	}
-	return vec;	
 }
 
-void findRelationByRegion(vector<Node> &vec, int i, int k) {
-	if (vec[i].region.name.compare(vec[k].region.name) > 0) {
-		if (vec[k].right == -1) {
-			vec[i].parent = k;
-			vec[k].right = i;
+void findRelationByRegion(list<Node> &lst, list<Node>::iterator i, list<Node>::iterator k) {
+	if (i->region.name.compare(k->region.name) > 0) {
+		if (k->right == lst.end()) {
+			i->parent = k;
+			k->right = i;
 		} else {
-			findRelationByRegion(vec, i, vec[k].right);
+			findRelationByRegion(lst, i, k->right);
 		}
 	} else {
-		if (vec[k].left== -1) {
-			vec[i].parent = k;
-			vec[k].left = i;
+		if (k->left == lst.end()) {
+			i->parent = k;
+			k->left = i;
 		} else {
-			findRelationByRegion(vec, i, vec[k].left);
+			findRelationByRegion(lst, i, k->left);
 		}
-	
 	}
 }
 
-void findRelationByBirths(vector<Node> &vec, int i, int k) {
-	if (vec[i].region.totalBirths > vec[k].region.totalBirths) {
-		if (vec[k].right == -1) {
-			vec[i].parent = k;
-			vec[k].right = i;
+void findRelationByBirths(list<Node> &lst, list<Node>::iterator i, list<Node>::iterator k) {
+	if (i->region.totalBirths > k->region.totalBirths) {
+		if (k->right == lst.end()) {
+			i->parent = k;
+			k->right = i;
 		} else {
-			findRelationByBirths(vec, i, vec[k].right);
+			findRelationByBirths(lst, i, k->right);
 		}
 	} else {
-		if (vec[k].left== -1) {
-			vec[i].parent = k;
-			vec[k].left = i;
+		if (k->left == lst.end()) {
+			i->parent = k;
+			k->left = i;
 		} else {
-			findRelationByBirths(vec, i, vec[k].left);
+			findRelationByBirths(lst, i, k->left);
 		}
-	
 	}
 }
 
-void makeTree(vector<Node> &vec, string index) {
+void makeTree(list<Node> &vec, string index) {
 	if (index == "region") {
-		for (int i = 1; i < NUMOFREGIONS; i++) {
-			findRelationByRegion(vec, i, 0);
+		for (list<Node>::iterator i = next(vec.begin()); i != vec.end(); ++i) {
+			findRelationByRegion(vec, i, vec.begin());
 		}
 	} else if (index == "births") {
-		for (int i = 1; i < NUMOFREGIONS; i++) {
-			findRelationByBirths(vec, i, 0);
+		for (list<Node>::iterator i = next(vec.begin()); i != vec.end(); ++i) {
+			findRelationByBirths(vec, i, vec.begin());
 		}
-
 	}
 }
 
-int findOrderSuccessor(vector<Node> &vec, int k) {
-	if (vec[k].left == -1) {
+list<Node>::iterator findOrderSuccessor(list<Node> &lst, list<Node>::iterator k) {
+	if (k->left == lst.end()) {
 		return k;
 	} else {
-		return findOrderSuccessor(vec, vec[k].left);
+		return findOrderSuccessor(lst, k->left);
 	}
 }
 
-void inorderTraversal(const vector<Node> &vec, int k) {
-    if (k == -1){
-		return;
+void inorderTraversal(list<Node> &lst, list<Node>::iterator k) {
+	if (k->left != lst.end()) {
+		inorderTraversal(lst, k->left);
 	}
-	inorderTraversal(vec, vec[k].left);
-    cout << vec[k].region.name << ": " << vec[k].region.totalBirths<<endl;
-    inorderTraversal(vec, vec[k].right);
+	if (k->right != lst.end()) {
+		inorderTraversal(lst, k->right);
+	}
+	cout << k->region.name << ": " << k->region.totalBirths << endl;
 }
 
 int hashingFunction(string key, int m) {

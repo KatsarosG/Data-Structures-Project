@@ -17,13 +17,13 @@ void makeRegionArray(Region*, Row*);
 void calcTotalBirths(Region*);
 void calcTotalDeaths(Region*);
 
-vector<Node> makeNodeVector(Region[]);
-void makeTree(vector<Node>&, string);
+void makeNodeVector(list<Node>&, Region[]);
+void makeTree(list<Node>&, string);
 
 void resetNode(vector<Node>&, int);
-int findOrderSuccessor(vector<Node>&, int);
+list<Node>::iterator findOrderSuccessor(list<Node>&, list<Node>::iterator);
 
-void inorderTraversal(const vector<Node> &vec, int index);
+void inorderTraversal(list<Node>&, list<Node>::iterator);
 
 int hashingFunction(string, int);
 void makeHashTable(list<Region>*, Region*);
