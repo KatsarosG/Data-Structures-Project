@@ -7,6 +7,7 @@
 using namespace std;
 
 void Question1();
+void Question2();
 
 ifstream DataFile("Data(Edited).txt");
 Row dataArray[NUMOFENTRIES];
@@ -31,7 +32,14 @@ int main() {
 		cout << endl;
 	}
 
-	Question1();
+	Question2();
+
+	for (int i = 0; i < M; i++) {
+		cout << i << ": " << endl;
+		for (list<Region>::iterator j = hashTable[i].begin(); j != hashTable[i].end(); ++j)
+    		cout << j->name << endl;
+		cout << endl;
+	}
 }
 
 void Question1() {
@@ -45,6 +53,21 @@ void Question1() {
 	for (list<Region>::iterator j = hashTable[hash].begin(); j != hashTable[hash].end(); ++j)
 		if (j->name == searchRegion) {
 			cout << j->name << ": " << j->period(searchPeriod)->births << endl;
+			break;
 		}
 	cout << endl;
+}
+
+void Question2() {
+	string searchRegion;
+	cout << "Give region name to delete: ";
+	getline(cin >> ws, searchRegion);
+	int hash = hashingFunction(searchRegion, M);
+	for (list<Region>::iterator j = hashTable[hash].begin(); j != hashTable[hash].end(); ++j)
+		if (j->name == searchRegion) {
+			hashTable[hash].erase(j);
+			break;
+		}
+
+	
 }
