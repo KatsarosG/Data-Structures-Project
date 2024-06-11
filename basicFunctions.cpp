@@ -2,6 +2,7 @@
 
 #include "basicFunctions.h"
 #include "init.h"
+#include <sstream>
 
 string inputLine;
 string inputData;
@@ -17,6 +18,16 @@ void readFile(ifstream &file, Row RowStructArray[]) {
 		getline(ss, inputData, ',');
 		RowStructArray[lineCount].BirthDeath = (inputData == "Births")? true : false;
 		getline(ss, inputData, ',');
+		// if text is in quotes and two lines e.g: "Region not stated or \n area outside region"
+		if (inputData.front() == '"') {
+			string tempStream;
+			getline(file, tempStream, ',');
+			inputData += " " + tempStream;
+			inputData = inputData.substr(1, inputData.size()-2);
+			getline(file, inputLine);
+			ss.clear();
+			ss.str(inputLine);
+		}
 		RowStructArray[lineCount].region = inputData;
 		getline(ss, inputData, ',');
 		RowStructArray[lineCount].count = stoi(inputData);

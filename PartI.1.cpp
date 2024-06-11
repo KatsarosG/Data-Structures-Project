@@ -13,7 +13,7 @@
 #include <time.h>	// For clock
 using namespace std;
 
-ifstream DataFile("Data(Edited).txt");
+ifstream DataFile("bd-dec22-births-deaths-by-region.csv");
 Row dataArray[NUMOFENTRIES];
 Region regionArray[NUMOFREGIONS];
 

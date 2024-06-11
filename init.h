@@ -8,7 +8,7 @@
 #define NUMOFENTRIES 648
 #define NUMOFYEARS 18
 #define NUMOFREGIONS 18
-#define M 11
+#define M 11 // Number of buckets for hashing
 
 using namespace std;
 

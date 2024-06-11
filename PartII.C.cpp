@@ -9,7 +9,7 @@ using namespace std;
 void Question1();
 void Question2();
 
-ifstream DataFile("Data(Edited).txt");
+ifstream DataFile("bd-dec22-births-deaths-by-region.csv");
 Row dataArray[NUMOFENTRIES];
 Region regionArray[NUMOFREGIONS];
 list<Region> hashTable[M];

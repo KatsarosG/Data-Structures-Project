@@ -38,7 +38,7 @@ int PartIIA(Region regionArray[], list<Node> &nodeVector) {
 		return 0;
 	} else {
 		// Exit with exit code 1 for user error
-		cout << "Error: Option '" << action << "' not found." << endl;
+		cout << "Error: Option '" << action << "' not found." << endl << endl;
 		return 1;
 	}
 	
@@ -70,7 +70,7 @@ void QuestionA2(list<Node> &nodeVector) {
 			cout << "Year must be between 2005 and 2022!" << endl << endl;
 		}
 	} else {
-		cout << "Region Not Found!" << endl;
+		cout << "Region Not Found!" << endl << endl;
 	}
 }
 
@@ -95,7 +95,7 @@ void QuestionA3(list<Node> &nodeVector) {
 			cout << "Year must be between 2005 and 2022!" << endl << endl;
 		}
 	} else {
-		cout << "Region Not Found!" << endl;
+		cout << "Region Not Found!" << endl << endl;
 	}
 }
 
@@ -146,7 +146,7 @@ void QuestionA4(list<Node> &nodeVector) {
 		cout << endl;
 
     } else {
-        cout << "Region Not Found!" << endl;
+        cout << "Region Not Found!" << endl << endl;
     }
 }
 
