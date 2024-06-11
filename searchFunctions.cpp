@@ -239,20 +239,21 @@ void birthsInRangeOptBIS(int b1, int b2, Region arr[]) {
 		cout << "No Births Found At This Range!" << endl;
 	}
 }
-int searchTree(vector<Node>vec, string reg, int k) {
-	if (reg.compare(vec[k].region.name) == 0) {
+list<Node>::iterator searchTree(list<Node> &vec, string reg, list<Node>::iterator k) {
+	if (reg.compare(k->region.name) == 0) {
 		return k;
-	} else if (reg.compare(vec[k].region.name) > 0) {
-		if (vec[k].right != -1) {
-			return searchTree(vec, reg, vec[k].right);
+	} else if (reg.compare(k->region.name) > 0) {
+		if (k->right != vec.end()) {
+			return searchTree(vec, reg, k->right);
 		} else {
-			return -1;
+			list<Node>::iterator u = vec.end();
+			return vec.end();
 		}
 	} else {
-		if (vec[k].left != -1) {
-			return searchTree(vec, reg, vec[k].left);
+		if (k->left != vec.end()) {
+			return searchTree(vec, reg, k->left);
 		} else {
-			return -1;
+			return vec.end();
 		}
 	}	
 }

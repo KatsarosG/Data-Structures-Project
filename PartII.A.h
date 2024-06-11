@@ -3,6 +3,6 @@
 
 #include "init.h"
 
-int PartIIA(Region*, vector<Node>&);
+int PartIIA(Region*, list<Node>&);
 
 #endif
