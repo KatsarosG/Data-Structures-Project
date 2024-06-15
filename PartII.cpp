@@ -3,6 +3,7 @@
 #include "searchFunctions.h"
 #include "PartII.A.h"
 #include "PartII.B.h"
+#include "PartII.C.h"
 #include <list>
 #include <string.h>
 #include <ostream>
@@ -12,6 +13,7 @@ ifstream DataFile("bd-dec22-births-deaths-by-region.csv");
 Row dataArray[NUMOFENTRIES];
 Region regionArray[NUMOFREGIONS];
 list<Node> nodeVector;
+list<Region> hashTable[M];
 
 int main() {
 	readFile(DataFile, dataArray);
@@ -42,7 +44,8 @@ int main() {
 			while (PartIIB(nodeVector) != 0) {}
 		}
 	} else if (inputTxt.compare("hash") == 0) {
-		//PartII.C
+		makeHashTable(hashTable, regionArray);
+		while (PartIIC(hashTable) != 0) {}
 	} else {
 		cout << "Option '" << inputTxt << "' not found!" << endl;
 	}
