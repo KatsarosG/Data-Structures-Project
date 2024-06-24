@@ -60,6 +60,6 @@ part2:
 	$(CC) -c searchFunctions.cpp
 	$(CC) -c PartII.B.cpp
 	$(CC) -c PartII.A.cpp
-	$(CC) -c partII.C.cpp
+	$(CC) -c PartII.C.cpp
 	$(CC) -c PartII.cpp
 	$(CC) -o partII.out PartII.C.o PartII.B.o PartII.A.o searchFunctions.o basicFunctions.o sortingFunctions.o PartII.o
