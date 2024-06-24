@@ -115,7 +115,7 @@ int BIS(Region arr[], int x) {
 		if (x >= arr[next].totalBirths) {
 			int tempRight, tempLeft;
 			int tempIndex = next + i*sqrt(size);
-			while (x > arr[tempIndex].totalBirths && tempIndex < right) {
+			while (x > arr[tempIndex].totalBirths) {
 				i = i + 1;////////////////
 				tempRight = tempIndex;
 				tempLeft = tempIndex;
@@ -127,7 +127,7 @@ int BIS(Region arr[], int x) {
 		} else if (x < arr[next].totalBirths) {
 			// If x < arr[next] : step by -sqrt(size)
 			int tempIndex = next - i*sqrt(size);
-			while (x < arr[tempIndex].totalBirths && tempIndex > left) {
+			while (x < arr[tempIndex].totalBirths) {
 				i += 1;////////// i = 2 * i
 				tempIndex = next - i*sqrt(size);
 			}
@@ -175,10 +175,13 @@ int optBIS(Region arr[], int x) {
 	// If x <= max
 	if (x <= arr[NUMOFREGIONS-1].totalBirths) while (x != arr[next].totalBirths) {
 		int i = 0;
-		size = right - left + 1;
+		//cout << "right - left: " << right << " - " << left << endl;
+		size = right - left;
 		// If size <= 3 : Direct Search
 		if (size <= 3) {
 			for (int j = left; j <= right; j++) {
+				//cout << "size <= 3: " << j << endl;
+				//cout << "test: " << x << " "<< arr[j].totalBirths << endl; 
 				if (x == arr[j].totalBirths) {
 					//Success!
 					return j;
@@ -189,29 +192,29 @@ int optBIS(Region arr[], int x) {
 		}
 		// If x > arr[next] : step by +sqrt(size)
 		if (x >= arr[next].totalBirths) {
-			int tempRight, tempLeft;
 			int tempIndex = next + i*sqrt(size);
-			while (x > arr[tempIndex].totalBirths && tempIndex < right) {
-				i = (2 * i)+1;	// May need fix;
-				tempRight = tempIndex;
-				tempLeft = tempIndex;
+			while (x > arr[tempIndex].totalBirths) {
+				i = pow(2,i);	// May need fix;
 				tempIndex = next + i*sqrt(size);
 			}
-			
+			//cout << "right left: " << right << " " << left << endl;
 			right = next + i*sqrt(size);
 			left = next + (i-1)*sqrt(size);
 		} else if (x < arr[next].totalBirths) {
+			//cout << "<" << endl;
 			// If x < arr[next] : step by -sqrt(size)
 			int tempIndex = next - i*sqrt(size);
-			while (x < arr[tempIndex].totalBirths && tempIndex > left) {
-				i = (2 * i)+1; // May need fix;
+			while (x < arr[tempIndex].totalBirths) {
+				//cout << "while <" << endl;
+				i = pow(2,i); // May need fix;
 				tempIndex = next - i*sqrt(size);
 			}
+			//cout << "right left: " << right << " " << left << endl;
 			right = next - (i - 1)*sqrt(size);
 			left = next - i*sqrt(size);
 		}
 		next = left + ceil((right - left + 1) * (float(x - arr[left].totalBirths) / (arr[right].totalBirths - arr[left].totalBirths)));
-	}
+	}	
 	if (x == arr[next].totalBirths) {
 		// Success!
 		return next;
@@ -222,6 +225,10 @@ int optBIS(Region arr[], int x) {
 }
 
 void birthsInRangeOptBIS(int b1, int b2, Region arr[]) {
+	//int result;
+	//result = optBIS(arr, 55497);
+	//cout << arr[result].name << ": " << arr[result].totalBirths << endl;
+	
     int result;
     b1 = b1 - 1;
 	// Find First Element In Range
