@@ -11,6 +11,9 @@ This repository contains the work developed by a team of students from the Compu
 ##
 The aim of this project is to apply and compare different classification and search algorithms to a dataset consisting of local birth and death counts. The main objectives are to run efficient classification and search algorithms on this data and analyze their performance. For the second part, structures such as Binary Search Trees (BSTs) and Hash Tables are used to implement efficient techniques for storing, retrieving and manipulating these data.
 
+## Detailed Report:
+The detailed report can be found [here](https://github.com/KatsarosG/Data-Structures-Project/blob/main/Report.pdf) (Language: Greek).
+
 ## Data source :
 [stats.govt.nz](https://www.stats.govt.nz/large-datasets/csv-files-for-download/) > Population > "Births and deaths: Year ended December 2022 – CSV" > bd-dec22-births-deaths-natural-increase.csv
 
